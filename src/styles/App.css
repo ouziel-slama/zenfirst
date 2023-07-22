@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+  padding: 10px;
+}
+
+.App .logo {
+  height: auto;
+  max-width: 180px;
+}
+
+form.login-form {
+  margin: 0 auto;
+}
+
+.ant-btn-primary {
+  color: #fff;
+  background-color: #722ed1;
+  box-shadow: 0 2px 0 rgba(155, 5, 255, 0.06);
+}
