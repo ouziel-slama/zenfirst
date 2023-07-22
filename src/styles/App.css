@@ -17,3 +17,29 @@ form.login-form {
   background-color: #722ed1;
   box-shadow: 0 2px 0 rgba(155, 5, 255, 0.06);
 }
+
+.loading {
+  margin-top: 20px;
+}
+
+.welcomeCardGridLeft {
+  width: 65% !important;
+  text-align: left;
+  padding: 0 1em !important;
+}
+
+.welcomeCardGridLeft p, .welcomeCardGridLeft h2 {
+  margin: 0 !important;
+}
+
+.welcomeCardGridRight {
+  width: 35% !important;
+  text-align: center;
+  padding: 1em !important;
+}
+
+.bellIcon {
+  font-size: 24px;
+  vertical-align: -0.3em !important;
+  padding-left: 0.3em;
+}

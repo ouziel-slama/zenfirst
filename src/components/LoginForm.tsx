@@ -8,28 +8,25 @@ import { useCookies } from 'react-cookie';
 import { Button, Form, Input } from 'antd';
 
 
-function LoginForm() {
+const LoginForm = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [_, setCookie] = useCookies(['zenfirst-cookie']);
 
-  const handleSubmission = React.useCallback(
-    (result: any) => {
+  const handleSubmission = React.useCallback(async (result: any) => {
       if (result.error) {
         showNotification("error", {
           message: "Echec lors de la connexion",
           description: result.error.message[0].messages[0].message,
         });
       } else {
-        
-        setCookie('zenfirst-cookie', result, { 
+        setCookie('zenfirst-cookie', result.response, { 
           path: '/',
         });
-        console.log("success", result);
         showNotification("success", {
           message: "Connexion réussie",
           description: "Bienvue sur Zenfirst Treso",
-        })
+        });
       }
     },
     [form]
@@ -46,7 +43,7 @@ function LoginForm() {
     setLoading(true);
     const result = await Login(values);
     setLoading(false);
-    handleSubmission(result);
+    await handleSubmission(result);
   }, [form, handleSubmission]);
 
  
