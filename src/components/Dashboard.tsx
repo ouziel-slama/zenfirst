@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
 
-import { UserOutlined, BellOutlined } from '@ant-design/icons';
-import { Spin, Card, Avatar } from 'antd';
+import { UserOutlined, BellOutlined, DownOutlined } from '@ant-design/icons';
+import { Spin, Card, Avatar, Dropdown, Button } from 'antd';
 import { useCookies } from 'react-cookie';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
 
 import GetDashboard from '../services/GetDashboard';
 
 const WelcomeCard = (props: any) => {
-  const [cookies] = useCookies(['zenfirst-cookie']);
-
   return (
     <Card style={{ backgroundColor: "#E8E3FE"}}>
       <Card.Grid className="welcomeCardGridLeft">
-        <p>Bienvenue,</p>
-        <h2>{cookies['zenfirst-cookie'].user.firstName} {cookies['zenfirst-cookie'].user.lastName}</h2>
+        <h2>{props.user.firstName} {props.user.lastName}</h2>
+        <p>{props.user.company.name}</p>
       </Card.Grid>
       <Card.Grid className="welcomeCardGridRight">
         <Avatar size="large" icon={<UserOutlined />} />
@@ -58,6 +56,7 @@ const DashboardChart = (props: any) => {
 const Dashboard = () => {
     const [loading, setLoading] = useState(true);
     const [dashboardData, setDashboardData] = useState<any>(null);
+    const [currentAccount, setCurrentAccount] = useState(0);
 
     useEffect(() => {
         GetDashboard().then((result: any) => {
@@ -75,8 +74,20 @@ const Dashboard = () => {
     } else {
         return (
           <div className="dashboard">
-            <WelcomeCard />
-            <DashboardChart data={dashboardData.chartData} />
+            <WelcomeCard user={dashboardData.user} />
+            <div>
+              <h3>Ma trésorerie:</h3>
+              <Dropdown placement="bottomLeft" menu={{
+                items:dashboardData.accountList,
+                onClick: (e: any) => setCurrentAccount(e.key)
+              }}>
+                  <span>{dashboardData.accountList[currentAccount].label} <Button icon={<DownOutlined />} /></span>
+              </Dropdown>
+            </div>
+            <h1 className="balance">
+              {new Intl.NumberFormat().format(dashboardData.accounts[currentAccount].balance)} €
+            </h1>
+            <DashboardChart data={dashboardData.accounts[currentAccount].chartData} />
           </div>
         );
     }

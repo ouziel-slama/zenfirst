@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+
   padding: 10px;
 }
 
@@ -19,7 +19,7 @@ form.login-form {
 }
 
 .loading {
-  margin-top: 20px;
+  margin-top: 180px;
 }
 
 .welcomeCardGridLeft {
@@ -30,6 +30,9 @@ form.login-form {
 
 .welcomeCardGridLeft p, .welcomeCardGridLeft h2 {
   margin: 0 !important;
+}
+.welcomeCardGridLeft h2 {
+  margin-top: 0.22em !important;
 }
 
 .welcomeCardGridRight {
@@ -42,4 +45,8 @@ form.login-form {
   font-size: 24px;
   vertical-align: -0.3em !important;
   padding-left: 0.3em;
+}
+
+h1.balance {
+  text-align: center;
 }
