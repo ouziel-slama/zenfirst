@@ -50,3 +50,20 @@ form.login-form {
 h1.balance {
   text-align: center;
 }
+
+.accountSelect {
+  width: 100%;
+}
+
+.currentMonth {
+  border: #4096ff solid 1px;
+  border-radius: 5px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto;
+}
+
+.monthSelector {
+  margin-bottom: 30px;
+}

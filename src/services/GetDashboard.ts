@@ -125,10 +125,10 @@ const GetDashboard = async () => {
     }
     accountList.push({
       label: accounName,
-      key: accountList.length,
+      value: accountList.length,
     });
   });
-  console.log(itemsData)
+  console.log(accountList)
   return {
     user,
     accounts,
