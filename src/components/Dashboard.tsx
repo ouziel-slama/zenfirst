@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
 
-import { UserOutlined, BellOutlined, LeftOutlined, RightOutlined  } from '@ant-design/icons';
+import { UserOutlined, BellOutlined, LeftOutlined, RightOutlined, ArrowDownOutlined, ArrowUpOutlined  } from '@ant-design/icons';
 import { Spin, Card, Avatar, Select, Row, Col, Button } from 'antd';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
 
@@ -34,6 +34,7 @@ const DashboardChart = (props: any) => {
 
   return (
     <div>
+      <h4>Evolution mensuelle</h4>
       <BarChart   
         width={300}
         height={300}
@@ -58,8 +59,7 @@ const DashboardChart = (props: any) => {
 
 const AccountSelector = (props: any) => {
   return (
-    <div>
-      <h3>Ma trésorerie:</h3>
+    <div className="accountSelector">
       <Select 
         defaultValue={props.data.accountList[0]} 
         options={props.data.accountList} 
@@ -72,9 +72,12 @@ const AccountSelector = (props: any) => {
 
 const AccountBalance = (props: any) => {
   return (
-    <h1 className="balance">
-      {new Intl.NumberFormat().format(props.data.accounts[props.currentAccount].balance)} €
-    </h1>
+    <div>
+      <h4>Trésorerie</h4>
+      <h1 className="balance">
+        {new Intl.NumberFormat().format(props.data.accounts[props.currentAccount].balance)} €
+      </h1>
+    </div>
   )
 }
 
@@ -151,7 +154,28 @@ const Dashboard = () => {
             <WelcomeCard user={dashboardData.user} />
             <AccountSelector {...defaultProps } />
             <AccountBalance {...defaultProps }/>
+            
+            <h4>Mouvements</h4>
             <MonthSelector {...defaultProps }  />
+            <Row align="middle" className="monthlyMovements"> 
+              <Col span={12} className="left">
+                <div>
+                  <h3><ArrowUpOutlined style={{color: "#2FCE8F"}} /> Encaissements</h3>
+                  <h4>
+                    {new Intl.NumberFormat().format(dashboardData.accounts[currentAccount].chartData[currentMonthIndex].cashIn)} €
+                  </h4>
+                </div>
+              </Col>
+              <Col span={12} className="right">
+                <div>
+                  <h3><ArrowDownOutlined style={{color: "#FF5B35"}} /> Décaissements</h3>
+                  <h4>
+                   {new Intl.NumberFormat().format(dashboardData.accounts[currentAccount].chartData[currentMonthIndex].cashOut)} €
+                  </h4>
+                </div>
+              </Col>
+            </Row>
+
             <DashboardChart {...defaultProps } />
           </div>
         );

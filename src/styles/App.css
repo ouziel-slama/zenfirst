@@ -65,5 +65,28 @@ h1.balance {
 }
 
 .monthSelector {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.monthlyMovements .ant-col > div {
+  background-color: #F6F6F6;
+  border-radius: 5px;
+  padding: 5px;
+}
+.monthlyMovements .ant-col.left {
+  padding: 5px;
+  padding-left: 0;
+}
+.monthlyMovements .ant-col.right {
+  padding: 5px;
+  padding-right: 0;
+}
+
+.monthlyMovements h4 {
+  text-align: center;
+  font-size: 1em;
+}
+
+.accountSelector {
+  margin-top: 20px;
 }
