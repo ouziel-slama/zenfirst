@@ -1,11 +1,14 @@
 .App {
-
   padding: 10px;
 }
 
 .App .logo {
   height: auto;
   max-width: 180px;
+}
+
+.LoginForm {
+  text-align: center;
 }
 
 form.login-form {

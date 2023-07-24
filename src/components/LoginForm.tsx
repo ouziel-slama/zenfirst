@@ -48,7 +48,7 @@ const LoginForm = () => {
 
  
   return (
-    <div className="App">
+    <div className="LoginForm">
       <img className="logo" src={logo} />
       <h1>Me connecter</h1>
       <p>Vous n'avez pas de compte ? <a href="https://treso.zenfirst.fr/register">Créer un compte</a></p>
